@@ -2,6 +2,8 @@
 
 var articles = [];
 
+$.getScript('blogArticles.js');
+
 function Article (rawDataObj) {
   // TODO: Use the JS object passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
@@ -21,7 +23,7 @@ Article.prototype.toHtml = function() {
   However, in our modules.css stylesheet, we gave all elements
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
-  $('$newArticle').attr('class','article');
+  $newArticle.removeClass('template');
 
 
 
@@ -38,7 +40,11 @@ Article.prototype.toHtml = function() {
     5. publication date. */
 
   // Display the date as a relative number of 'days ago'
-
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('a').text(this.author);
+  $newArticle.find('section').append(this.body);
+  $newArticle.find('a').attr('href', this.authorUrl);
+  // $newArticle.find('time').attr('pubdate datetime',this.publishedOn);
 
 
 
